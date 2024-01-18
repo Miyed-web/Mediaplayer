@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <link rel="stylesheet" href="style.css"  />
+ <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet">
+      <title>Document</title>
+</head>
+<body>
+  <section>
+<div class="container">
+  
+  
+      <div class="video_player">
+
+<div   class="video" >
+     <video id="mainVideo" >
+<source src="carvideo.mp4" type="video/mp4">
+</video>
+
+</div>
+
+ 
+     <div class="controls">
+  <div class="timeline-container">
+
+  <div id="progress-timeline" class="progress-timeline">
+ <div id="thumble-indic" class="thumble-indic"></div>
+           </div>
+         </div>
+ <div class="controls-list">
+    <div class="controls-left"> 
+     <div class="timer">
+  <span id="timeline" class="timeline">0:00</span> / <span class="duration">0:00</span>
+</div><span class="icon">
+ <span id="fast_rewind" class="material-symbols-outlined fast-rewind">
+replay_10
+</span>
+<span id="play" class="material-symbols-outlined play">
+play_arrow
+</span>
+<span id="fast_forward" class="material-symbols-outlined fast-forward">
+forward_10
+</span>
+<span id="volume" class="material-symbols-outlined volume">
+volume_up
+</span>
+<input type="range" min="0" max="100" value="100" id="inputValue"/>
+
+</span>
+
+         </div>
+         
+  <div class="controls-right"> <span class="icon">
+     
+    <!--  <span class="material-symbols-outlined auto-play">
+</span> -->
+<span class="material-symbols-outlined autoplay">
+autoplay
+</span>
+<span class="material-symbols-outlined settings">
+settings
+</span>
+
+<span class="material-symbols-outlined fullscreen">
+fullscreen
+</span>
+
+</span>
+         </div>
+         </div>
+   
+        </div> 
+      <div id="speed-settings">
+        <div class="playback">
+          <span>play back speed</span>
+          <ul>
+       <li data-speed="0.25">0.25x</li>
+            
+       <li data-speed="0.5">0.5x</li> 
+       <li data-speed="0.75">0.75x</li> 
+       <li data-speed="1"  class="active">1x</li> 
+       <li data-speed="1.25">1.25x</li>   
+       <li data-speed="1.5">1.5x</li>
+       <li data-speed="1.75">1.75x</li>
+       <li data-speed="2">2x</li>
+          </ul>
+        </div>
+      </div> 
+      </div>
+ <div class="title" id="title"><h3>video 1</h3></div> 
+    </div>
+     <div class="video-list ">
+       <div class="vid active">
+        <video src="carvideo.mp4"></video>
+        <h3 class="title">video 1</h3>
+      
+    </div>
+      <div class="vid">
+        <video src="https://drive.google.com/uc?id=10FrWC4LIGChWPewvF0Ya_3LlngvdcpDe" ></video>
+        <h3 class="title">video 2</h3>
+      </div>
+    
+        <div class="vid">
+        <video src="https://drive.google.com/uc?id=1ZD5vjB7aGcBYBFOHZm6qT2gQ3t-Lci3R"></video>
+        <h3 class="title">video 3</h3>
+      
+    </div>
+       <div class="vid">
+        <video src="https://drive.google.com/uc?id=1X2AY92RzVL4EM0VTqxaz6mi1trc2i4MJ"></video>
+        <h3 class="title">video 4</h3>
+      </div>
+    
+
+      <div class="vid">
+        <video src="https://drive.google.com/uc?id=10FrWC4LIGChWPewvF0Ya_3LlngvdcpDe"></video>
+        <h3 class="title">video 5</h3>
+      </div>
+       <div class="vid">
+        <video src="https://drive.google.com/uc?id=1SSJoFBU6pm-hqUcQK0O5kRsbrznMbmwM"></video>
+        <h3 class="title">video 6</h3>
+      </div>
+       <div class="vid">
+        <video src="https://drive.google.com/uc?id=1gCunRevXEWkPwnu4AWV6JChZ-cNMfGjG"></video>
+        <h3 class="title">video 7</h3>
+      </div>
+       <div class="vid">
+        <video src="https://drive.google.com/uc?id=1gIRL3hZH28ceNXe3Lr2oOBzUfephOW0J"></video>
+        <h3 class="title">video 8</h3>
+      </div>
+       <div class="vid">
+        <video src="video_2.mp4"></video>
+        <h3 class="title">video 9</h3>
+      </div>
+    </div> 
+
+    
+   
+    
+  </section>
+  
+  <script src="script.js" ></script>
+</body>
+</html>

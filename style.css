@@ -1,0 +1,384 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  
+}
+body{
+  background: #ddd;
+  height: 100vh;
+}
+.material-symbols-outlined {
+   user-select: none;
+  -webkit-user-select:none; 
+  cursor: pointer;
+  
+  padding: 1px;
+  border-radius: 50%;
+  font-size: 2em;
+}
+section{
+  display: flex;
+  padding: 5%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items:center;
+  gap: 20px;
+  flex-direction: column;
+}
+.container{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top:3rem;
+  margin-bottom: 2rem;
+}
+.container .title {
+  border:1px solid #bbbccc;
+  background: #dddeee;
+  padding: 10px 20px;
+  text-align: center;
+  width: 710px;
+  
+}
+.container .title h3{
+  font-size: 17px;
+  font-weight: 700;
+  color: #000;
+}
+
+.container .video_player::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 6 / 1;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.7) ,transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+.container .video_player .video video{
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  
+}
+.container .video_player{
+  position: relative;
+  width: 710px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px #111;
+  color: #fff;
+  aspect-ratio: 16 / 9;
+  
+}
+.container .video_player .main-video{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  outline: none;
+}
+.container .video_player .controls{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+ /** background: #ccc;**/
+  
+  z-index: 3;
+  transform: translateY(0);
+  color: #fff;
+  
+}
+.timeline-container{
+  width: 100%;
+  height:5px ;
+  position: relative;
+  
+
+}
+.timeline-container .progress-timeline{
+  position: absolute;
+  width: 100%;
+  height: 3px;
+ background: rgba(150,150,150,1);
+ bottom: 0;
+ transition:height 150ms ease-in-out;
+ 
+}
+.timeline-container:hover .progress-timeline{
+ height: 100%;
+  
+}
+.timeline-container:hover .progress-timeline .thumble-indic{
+  height: 100%;
+}
+   .timeline-container .progress-timeline .thumble-indic{
+     position: absolute;
+     height: 3.1px;
+     width: 0;
+     background: red;
+     transition:height 150ms ease-in-out;
+     bottom: 0;
+     
+     
+   }.timeline-container:hover .progress-timeline .thumble-indic::before{
+     display: block;
+   }
+   .timeline-container .progress-timeline .thumble-indic::before{
+     position: absolute;
+     content: '';
+     height: 15px;
+     width: 15px;
+     border-radius: 50%;
+     background: red;
+     top: 50%;
+     right: -7px;
+     display: none;
+     transform: translateY(-50%) ;
+     transition: display 145ms ease-in-out;
+   }
+   .container .controls .controls-list{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     flex-wrap: nowrap;
+     width: 97%;
+     height: 45px;
+     
+   }
+   .container .controls .controls-list .controls-left, .container .controls .controls-list .controls-right{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   .container .controls .controls-list .controls-left .timer{
+     white-space:nowrap ;
+     font-size: 14px;
+     color: #fff;
+     margin-left: 5px;
+     margin-right: 5px;
+     display: inline-block;
+     text-align: center;
+   }
+   .controls .icon{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    text-align: center;
+    gap: 2px;
+    margin: 0 8px 0 8px ;
+   }
+   .controls .icon .material-symbols-outlined{
+     font-size: 24px;
+     color: #dddeee;
+     cursor: pointer;
+     padding: 2px;
+     background: rgba(36,36,36,.4);
+   }
+  
+      .controls .icon .material-symbols-outlined.fast-forward:active{
+        transition: .2s;
+        transform: rotate(20deg);
+      }
+   
+    .controls .icon .material-symbols-outlined.fast-rewind:active{
+        transition: .2s;
+        transform: rotate(-20deg);
+      }
+
+    .controls .icon #inputValue{
+      -webkit-appearance:none;
+      appearance: none;
+      height: 4px;
+      width: 60px;
+      outline: none;
+      border: none;
+      border-radius:8px;
+      background: #fff;
+      
+    }
+   .controls .icon #inputValue::-webkit-slider-thumb{
+     -webkit-appearance:none;
+      appearance: none;
+      height: 14px;
+      width: 14px;
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      background:#555;
+      transition: .3s;
+       }
+       .controls-right .icon .autoplay{
+         color: #fff;
+         background: rgba(36,36,36,.4);
+       }
+    .controls-right .icon .autoplay.active{
+         color: #000;
+         background: #fff;
+       }
+
+   
+   .controls-right .icon .settings{
+           font-size: 24px;
+           transition: .4s;
+         }
+    .controls-right .icon .settings:active{
+      transform: rotate(180deg);
+      
+    }
+    .video_player  #speed-settings::-webkit-scrollbar{
+     display: none;
+    }
+  .video_player  #speed-settings{
+      position: absolute;
+      right: 25px;
+      bottom: 65px;
+      background: rgba(79,79,79,0.8);
+      width: 140px;
+      height: 200px;
+      color: #fff;
+      overflow-y: scroll;
+      z-index: 20;
+      border-radius: 3px;
+    display: none;
+      
+    }
+  .video_player  #speed-settings .playback span{
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+        padding: 10px 12px;
+        border-bottom:1px solid #000;
+        text-align: center;
+        margin-top: 2px;
+      }
+     .video_player  #speed-settings .playback ul{
+          position: relative;
+        }
+  .video_player  #speed-settings .playback ul li{
+            position: relative;
+            width:100% ;
+            padding: 12px 33px;
+            font-size: 15px;
+            text-align: left;
+            display: block;
+            
+          }          
+  .video_player  #speed-settings .playback ul li.active::before{
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+     border-radius: 50%;
+    background: #fff;
+    color: #fff;
+  }        
+          
+  .video_player  #speed-settings .playback ul li:hover{
+    background: #191919;
+  } 
+  
+  .video-list {
+    background: #fff;
+    height: 550px;
+    overflow-y: scroll;
+    border-radius: 12px;
+     width: 710px; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  padding: 3px;
+  overflow-x: hidden;
+  }
+  .video-list .vid{
+    display: flex;
+    align-items: center;
+    width:100% ;
+    height: auto;
+    border-radius: 5px;
+    padding: 3px;
+    gap: 15px;
+    margin: 3px;
+    background: #ddd;
+    border: 1px solid #222;
+  }
+  .video-list .vid .title h3{
+    font-size: 17px;
+    
+  }
+  .video-list .vid video{
+    width: 100px;
+  }
+    .video-list .vid h3{
+      color: #000;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .video-list .vid:hover{
+      background: #eee;
+    }
+    .video-list .vid.active{
+        background: #228581;
+        
+      }
+      .video-list .vid.active h3{
+        color: #fff;
+      }
+  @media only screen and (max-width:600px){
+    
+    body{
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+    .container{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+    }
+  .container .video_player{
+    width: 99vw;
+  }
+  .container .title {
+    width: 99%;
+  }
+    .controls .icon{
+      margin: 0 5px 0 5px;
+      font-size: 23px;
+      
+    }
+   #inputValue
+   {
+      display: none;
+    }
+  .video_player  #speed-settings{
+    height: 120px;
+    width: 135px;
+    bottom: 53px;
+  }
+  .video-list{
+    width: 99vw;
+    height: 400px;
+  }
+  .video-list .vid video {
+    width: 95px;
+    border-radius: 4px;
+  }
+  
+  
+  }
