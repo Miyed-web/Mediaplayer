@@ -9,6 +9,9 @@
       rel="stylesheet">
      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700&display=swap" rel="stylesheet">
       <title>Document</title>
 </head>
 <body>
@@ -19,9 +22,8 @@
       <div class="video_player">
 
 <div   class="video" >
-     <video id="mainVideo" >
-<source src="carvideo.mp4" type="video/mp4">
-</video>
+   <video src="carvideo.mp4" type="video/mp4" id="mainVideo" >
+   </video>
 
 </div>
 
@@ -29,9 +31,10 @@
      <div class="controls">
   <div class="timeline-container">
 
-  <div id="progress-timeline" class="progress-timeline">
+ <!--  <div id="progress-timeline" class="progress-timeline">
  <div id="thumble-indic" class="thumble-indic"></div>
-           </div>
+           </div> -->
+    <input type="range" name="video-progress" id="video-progress" value="0" max="100" min="0">
          </div>
  <div class="controls-list">
     <div class="controls-left"> 
@@ -95,7 +98,19 @@ fullscreen
       </div>
  <div class="title" id="title"><h3>video 1</h3></div> 
     </div>
+    
+    
+    <div class="video-file">
+      <h3>Don't get video open from files:</h3>
+      
+      <input type="file" id="file" accept="video/*"/>
+      <label for="file">Choose file</label>
+      
+    </div>
+   
+<div class="playlist">           <h3 style="margin-bottom:20px;padding:20px;text-align:center;">video playlist:</h3>
      <div class="video-list ">
+
        <div class="vid active">
         <video src="carvideo.mp4"></video>
         <h3 class="title">video 1</h3>
@@ -130,7 +145,7 @@ fullscreen
         <h3 class="title">video 7</h3>
       </div>
        <div class="vid">
-        <video src="https://drive.google.com/uc?id=1gIRL3hZH28ceNXe3Lr2oOBzUfephOW0J"></video>
+        <video src="https://drive.google.com/u/0/uc?id=10FrWC4LIGChWPewvF0Ya_3LlngvdcpDe&export=download"></video>
         <h3 class="title">video 8</h3>
       </div>
        <div class="vid">
@@ -138,9 +153,9 @@ fullscreen
         <h3 class="title">video 9</h3>
       </div>
     </div> 
-
+</div>
     
-   
+   <div id="historyList"></div>
     
   </section>
   

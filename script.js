@@ -4,9 +4,7 @@ const video_player = document.querySelector(".video_player");
 
 const mainVideo = document.getElementById("mainVideo");
 const  controls = document.querySelector(".controls");
-const  timelineContainer = document.querySelector(".timeline-container");
-const  progressTimeline = document.getElementById("progress-timeline");
-const thumbleIndic = document.getElementById("thumble-indic")
+const videoProgress = document.querySelector("#video-progress");
 const  fast_rewind = document.getElementById("fast_rewind");
 const playPause = document.getElementById("play");
  const fast_forward = document.getElementById("fast_forward");
@@ -23,6 +21,7 @@ const  playback = document.querySelectorAll(".playback li");
  const videoList = document.querySelectorAll(".video-list .vid");
 const title = document.getElementById("title");
 
+const fileInput = document.getElementById('file');
 
 
 
@@ -56,6 +55,21 @@ videoList.forEach(video =>{
   }
 })
 
+//input file video
+fileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    const videoURL = URL.createObjectURL(file);
+    mainVideo.src = videoURL;
+    
+  }
+  if(mainVideo.paused){
+    playPause.textContent= "play_arrow"
+  }else{
+    playPause.textContent= "pause"
+  }
+});
 
 // 
 // 
@@ -76,6 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
       playPause.textContent = "play_arrow";
     }
   });
+  // when video is ended
+  mainVideo.addEventListener("ended",()=>{
+    playPause.textContent= "play_arrow"
+  })
 });
 //fast forward
 
@@ -105,7 +123,7 @@ fast_forward.addEventListener("click",() =>{
  function formatduration(time){
    const seconds = Math.floor(time % 60);
    const minutes = Math.floor(time / 60) % 60;
-   const hours = Math.floor(time / 3600);
+   const hours = Math.floor(time / 3600) ;
    if(hours=== 0){
      return `${minutes}:${timeformator.format(seconds)}`;
      
@@ -120,26 +138,24 @@ fast_forward.addEventListener("click",() =>{
  
  // current video timeline
 
-  mainVideo.addEventListener("timeupdate",()=>{
-    let percent = (mainVideo.currentTime / mainVideo.duration) * 100;
-    thumbleIndic.style.width = `${percent}%`
-   
-  })
-  
-  
- //progress bar
- 
- // progressTimeline.addEventListener("click",(e)=>{
-//    let videoDuration = mainVideo.duration;
-//    let progressWidth = progressTimeline.clientWidth;
-//    let offsetx = progressTimeline.offsetX;
-//    mainVideo.currentTime = (offsetx / progressWidth) * videoDuration;
-//  })
- 
- 
- 
- 
+setInterval(()=>{
+    let videoDuration = mainVideo.duration;
+    let videoCurrentTime = mainVideo.currentTime;
+  videoProgress.value = (videoCurrentTime  / videoDuration) * 100;
+},1000);
 
+videoProgress.onchange=(e)=>{
+  let videoDuration = mainVideo.duration;
+  mainVideo.currentTime=(e.target.value * videoDuration) / 100;
+}
+
+  
+
+ 
+ 
+ 
+ 
+// speed setting display
  speedSettings.style.display = "none";
 
 
@@ -220,3 +236,71 @@ playback.forEach((e)=>{
   })
 })
 
+
+
+video_player.addEventListener("touchstart",( )=>{
+  controls.classList.add("active")
+setTimeout(function() {
+  controls.classList.remove("active")
+}, 8000);
+  
+  
+})
+
+video_player.addEventListener("touchmove",( )=>{
+  if (video_player.classList.contains("paused")){
+    controls.classList.remove("active")
+  }else{
+    controls.classList.add("active")
+  }
+})
+
+// store the video duration and path to local storage
+
+
+window.addEventListener("unload",( )=>{
+  let setDuration = localStorage.setItem('duration',`${mainVideo.currentTime }`)
+let setSrc = localStorage.setItem('src',`${mainVideo.getAttribute("src") }`)
+  
+})
+
+window.addEventListener("load",( )=>{
+  let getDuration = localStorage.getItem("duration");
+  let getSrc = localStorage.getItem("src");
+  if (getSrc) {
+    mainVideo.src = getSrc;
+    mainVideo.currentTime = getDuration;
+  }
+});
+
+mainVideo.addEventListener("contextmenu", (e)=>{
+  e.preventDefault();
+})
+
+const historyList = document.getElementById("historyList");
+
+// Load history from localStorage
+const videoHistory = JSON.parse(localStorage.getItem("videoHistory")) || [];
+displayHistory();
+
+function playVideo(videoUrl) {
+  mainVideo.src = videoUrl;
+  mainVideo.play();
+
+  // Add video to history (if not already present)
+  if (!videoHistory.includes(videoUrl)) {
+    videoHistory.push(videoUrl);
+    localStorage.setItem("videoHistory", JSON.stringify(videoHistory));
+    displayHistory();
+  }
+}
+
+function displayHistory() {
+  historyList.innerHTML = "";
+  videoHistory.forEach((videoUrl) => {
+    const historyItem = document.createElement("li");
+    historyItem.textContent = videoUrl;
+    historyItem.addEventListener("click", () => playVideo(videoUrl));
+    historyList.appendChild(historyItem);
+  });
+}
